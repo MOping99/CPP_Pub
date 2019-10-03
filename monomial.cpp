@@ -5,7 +5,7 @@
 int main(){
 
   Monomial x;
-  Monomial y("Y", 3);
+  Monomial y("y", 3);
 
   x.print();
   y.print();
