@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <cctype>
 
 using namespace std;
 
@@ -26,6 +27,15 @@ class Monomial{
       else
         return false;
     };
-    
+
+    bool operator<(const Monomial& rhs){
+    char l = tolower(this -> symbol[0]);
+    char r = tolower(rhs.symbol[0]);
+    if(l == r)
+      return ((this -> exponent) < rhs.exponent);
+    else
+      return (l < r);;
+    };
+
     print(){cout << symbol << "^" << exponent <<endl;};
 };
