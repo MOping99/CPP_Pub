@@ -3,7 +3,7 @@
 #include "monomial.h"
 
 int main(){
-//test
+
   Monomial x;
   Monomial y("Y", 3);
 
