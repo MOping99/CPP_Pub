@@ -10,14 +10,15 @@ class Product{
 
   public:
     Product(){list<Monomial> prod;};
-    Product(Monomial mono){list<Monomial> prod = {mono};};
-    Product(Product prod){
-      list<Monomial> new_prod(prod);
-      new_prod.sort();
-    };
-  
-    int size(){return (this -> size())};
-  
-    //Unsure of how to do multiplication as of yet
-  
+
+    //Stuck on creating a Product of 1
+    //monomial and getting the size
+
+    Product(Monomial mono){cout << mono;list<Monomial> prod = {mono};};
+
+    int size(){return prod.size();};
+
+    //Stuck on creating a Product of 1
+    //monomial and getting the size
+
 };

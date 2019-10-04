@@ -1,14 +1,14 @@
 // MCS 360 Project Two by <Mikael & Victor>
 
-#include "monomial.h"
+#include "product.h"
 
 int main(){
 
+  Product prod1;
   Monomial x;
-  Monomial y("Y", 3);
+  Product prod2 = Product(x);
 
-  x.print();
-  y.print();
+  cout << prod2.size();
 
   return 0;
 }
