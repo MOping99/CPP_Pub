@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cctype>
+#include <math.h>
 
 using namespace std;
 
@@ -34,8 +35,24 @@ class Monomial{
     if(l == r)
       return ((this -> exponent) < rhs.exponent);
     else
-      return (l < r);;
+      return (l < r);
     };
 
-    print(){cout << symbol << "^" << exponent <<endl;};
+    double operator()(double num){
+      return (pow(num,(this -> exponent)));
+    };
+
+    friend ostream &operator<<(ostream &os, const Monomial &Obj){
+      os << Obj.symbol << "^" << Obj.exponent;
+      return os;
+    };
+
+    friend istream &operator>>(istream &input, Monomial &Obj){
+      string s;
+      input >> s;
+      Obj.symbol = s.substr(0, s.find("^"));
+      Obj.exponent = stoi(s.substr(s.find("^")+1));
+      return input;
+    };
+
 };
