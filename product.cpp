@@ -7,8 +7,9 @@ int main(){
   Product prod1;
   Monomial x;
   Product prod2 = Product(x);
+  Product prod3 = Product(prod2);
 
-  cout << prod2.size();
+  prod1.get_size(); prod2.get_size();
 
   return 0;
 }

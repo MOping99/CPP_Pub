@@ -9,16 +9,9 @@ class Product{
     list<Monomial> prod;
 
   public:
-    Product(){list<Monomial> prod;};
+    Product(){};
+    Product(Monomial mono){prod.push_back(mono);};
 
-    //Stuck on creating a Product of 1
-    //monomial and getting the size
-
-    Product(Monomial mono){cout << mono;list<Monomial> prod = {mono};};
-
-    int size(){return prod.size();};
-
-    //Stuck on creating a Product of 1
-    //monomial and getting the size
+    int get_size(){cout << prod.size();};
 
 };

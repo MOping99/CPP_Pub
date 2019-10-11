@@ -50,8 +50,14 @@ class Monomial{
     friend istream &operator>>(istream &input, Monomial &Obj){
       string s;
       input >> s;
-      Obj.symbol = s.substr(0, s.find("^"));
-      Obj.exponent = stoi(s.substr(s.find("^")+1));
+      if(s.find("^") != string::npos){
+        Obj.symbol = s.substr(0, s.find("^"));
+        Obj.exponent = stoi(s.substr(s.find("^")+1));
+      }
+      else{
+        Obj.symbol = s;
+        Obj.exponent = 1;
+      }
       return input;
     };
 
