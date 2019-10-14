@@ -6,7 +6,8 @@
 
 #include <iostream>
 #include <iomanip>
-#include "product.h"
+#include "productver2.cpp"
+
 
 using namespace std;
 
@@ -21,7 +22,7 @@ int main()
    Monomial yourm; cin >> yourm;
    cout << "Your monomial : " << yourm << endl;;
 
-   prod = prod*yourm;
+   prod = prod.operatorMult(yourm);
 
    cout << cubic << "*" << yourm << " : " << prod << endl;
    cout << "The number of monomials : " << prod.size() << endl;
@@ -37,13 +38,13 @@ int main()
    cout << cubic << " evaluated at " << x << " is "  << y1 << endl;
    cout << yourm << " evaluated at " << x << " is "  << y2 << endl;
    cout << prod << " evaluated at " << x << " is "  << z << endl;
-   cout << y1 << "*" << y2 << " is " << y1*y2 << endl;
+   cout << y1 << "*" << y2 << " is " << y1.operatorMult(y2) << endl;
 
    cout << "Give a product of monomials : ";
    Product yourp; cin >> yourp;
    cout << "Your product : " << yourp << endl;
 
-   cout << "(" << prod << ")*(" << yourp << ") is " << prod*yourp << endl;
+   cout << "(" << prod << ")*(" << yourp << ") is " << prod.operatorMult(yourp) << endl;
 
    return 0;
 }
