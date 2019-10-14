@@ -12,8 +12,16 @@ class Product{
   public:
     Product(){};
     Product(Monomial mono){prod.push_back(mono);};
+    Product(Product pro){prod = pro.remember();};
 
     list<Monomial> remember(){return prod;};
-    int get_size(){cout << prod.size();};
+    int size(){cout << prod.size();};
+
+    Product operator*(const Product& lhs, const Monomial& rhs){
+    	Product newProduct = Product(lhs);
+    	this -> push_back(rhs);
+      return newProduct;
+    };
+
 
 };

@@ -13,7 +13,7 @@ int main(){
 
   cout << p.size();
 
-  prod1.get_size(); prod2.get_size(); prod3.get_size();
+  prod1.size(); prod2.size(); prod3.size();
 
   return 0;
 }
