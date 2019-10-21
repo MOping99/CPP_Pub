@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class two_dim_vec{
+class PlanarVectors{
 
 
 };
