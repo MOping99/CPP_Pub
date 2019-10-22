@@ -1,3 +1,5 @@
+// MCS 360 Project Three by Mikael Opingari and Daniel Zagal
+
 #include "signal.h"
 
 Signal::Signal()//Constructs a signal object with state and elapsed at 0.
