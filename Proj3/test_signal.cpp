@@ -1,3 +1,5 @@
+// MCS 360 Project Three by Mikael Opingari and Daniel Zagal
+
 #include "signal.cpp"//Imports the signal class and its methods.
 #include <cassert>//To Assert that choice remains as 'y' or 'n'
 #include <iostream>//Used to output to the user.
