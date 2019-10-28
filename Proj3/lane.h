@@ -3,16 +3,18 @@
 #ifndef SIGNAL_H
 #define SIGNAL_H
 
-class Signal{
+#include <queue>
+
+class Lane{
 	private:
-		int arrivals;
+    queue<double> arrivals;
 
 	public:
-		Lane(int time, int lambda);
+		Lane(int time, int lambda, bool verbose);
 
     int size();
 
-    void pop();
+    void pop(int start, int end, bool verbose);
 
 };
 
