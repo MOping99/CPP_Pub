@@ -43,6 +43,13 @@ void Lane::pop(int start, int end, bool verbose){
   cout << "Popping in time interval [" << start << ", " << end << "] :" << endl;
   while(!arrivals.empty())
   {
+     double incr = start - arrivals.front();
+     if(incr > 0){
+       wait += incr;
+     }
+     else{
+       wait += 0;
+     }
      cout << "-> examining the top arrival " << arrivals.front() << endl;
      cout << "  popping " << arrivals.front() << ", wait : " << wait << endl;
      arrivals.pop();
