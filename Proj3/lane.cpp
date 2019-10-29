@@ -37,10 +37,12 @@ int Lane::size(){
 }
 
 void Lane::pop(int start, int end, bool verbose){
-  cout << "arrivals in time interval [" << start << ", " << end << "] :" << endl;
+  double wait = 0;
+  cout << "Popping in time interval [" << start << ", " << end << "] :" << endl;
   while(!arrivals.empty())
   {
-     cout << "  " << arrivals.front() << endl;
+     cout << "-> examining the top arrival " << arrivals.front() << endl;
+     cout << "  popping " << arrivals.front() << ", wait : " << wait << endl;
      arrivals.pop();
   }
 
