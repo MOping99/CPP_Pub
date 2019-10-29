@@ -1,7 +1,7 @@
 // MCS 360 Project Three by Mikael Opingari and Daniel Zagal
 
-#ifndef SIGNAL_H
-#define SIGNAL_H
+#ifndef LANE_H
+#define LANE_H
 
 #include <queue>
 
