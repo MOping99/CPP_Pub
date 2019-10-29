@@ -15,18 +15,21 @@ Lane::Lane(int time, int lambda, bool verbose){
   default_random_engine generator(seed);
   poisson_distribution<int> distribution(lambda);
 
-  cout << "Computing arrival times ..." << endl;
+  if(verbose == true){
+  cout << "Computing arrival times ..." << endl;}
   for(int i=0; i<time; ++i)
   {
      int rnd = distribution(generator);
-     cout << "at step " << i << ", number of arrivals : " << rnd << endl;
+     if(verbose == true){
+     cout << "at step " << i << ", number of arrivals : " << rnd << endl;}
 
      if(rnd > 0)
      {
         double stepsize = 1.0/(rnd+1);
         for(int k=0; k<rnd; k++)
         {
-           cout << "-> pushing " << i+stepsize*(k+1) << endl;
+           if(verbose == true){
+           cout << "-> pushing " << i+stepsize*(k+1) << endl;}
            arrivals.push(i+stepsize*(k+1));
         }
      }
@@ -40,7 +43,8 @@ int Lane::size(){
 
 void Lane::pop(int start, int end, bool verbose){
   double wait = 0;
-  cout << "Popping in time interval [" << start << ", " << end << "] :" << endl;
+  if(verbose == true){
+  cout << "Popping in time interval [" << start << ", " << end << "] :" << endl;}
   while(!arrivals.empty())
   {
      double incr = start - arrivals.front();
@@ -50,9 +54,11 @@ void Lane::pop(int start, int end, bool verbose){
      else{
        wait += 0;
      }
+     if(verbose == true){
      cout << "-> examining the top arrival " << arrivals.front() << endl;
-     cout << "  popping " << arrivals.front() << ", wait : " << wait << endl;
+     cout << "  popping " << arrivals.front() << ", wait : " << wait << endl;}
      arrivals.pop();
   }
-  cout << "sum of waiting times : " << wait << endl;
+  if(verbose == true){
+  cout << "sum of waiting times : " << wait << endl;}
 }
