@@ -1,5 +1,7 @@
 // MCS 360 Project Three by Mikael Opingari and Daniel Zagal
 
+//None of the verbose settings have been implemented
+
 #include "lane.h"
 #include <iostream>//Used to output to the user.
 #include <chrono>
