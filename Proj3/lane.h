@@ -7,7 +7,7 @@
 
 class Lane{
 	private:
-    queue<double> arrivals;
+    std::queue<double> arrivals;
 
 	public:
 		Lane(int time, int lambda, bool verbose);

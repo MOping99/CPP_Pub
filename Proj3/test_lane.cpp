@@ -14,6 +14,6 @@ int main(){
   cin >> lambda;
 
   Lane test = Lane(time, lambda, verbose);
-  test.pop(time, lambda, verbose);
+  test.pop(0, time, verbose);
 
 }
