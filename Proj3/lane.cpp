@@ -47,5 +47,5 @@ void Lane::pop(int start, int end, bool verbose){
      cout << "  popping " << arrivals.front() << ", wait : " << wait << endl;
      arrivals.pop();
   }
-
+  cout << "sum of waiting times : " << wait << endl;
 }
