@@ -54,6 +54,8 @@ int main(){
   while(e < 5){
 
     if(s == 0){
+      cout << "State : " << s << "  ";//Outputs the state value.
+  		cout << "elasped time : " << e << '\n';//Outputs the elasped value.
       cout << "green for left traffic from north and south, red for all others\n";
 
       for(i; i < 2; i++){
@@ -63,6 +65,8 @@ int main(){
       }
     }
     if(s == 1){
+      cout << "State : " << s << "  ";//Outputs the state value.
+  		cout << "elasped time : " << e << '\n';//Outputs the elasped value.
       cout << "green for straight and right going traffic from north and south,\nred for all others\n";
 
       for(i; i < 6; i++){
@@ -72,6 +76,8 @@ int main(){
       }
     }
     if(s == 2){
+      cout << "State : " << s << "  ";//Outputs the state value.
+  		cout << "elasped time : " << e << '\n';//Outputs the elasped value.
       cout << "green for left traffic from west and east, red for all others\n";
 
       for(i; i < 8; i++){
@@ -81,6 +87,8 @@ int main(){
       }
     }
     if(s == 3){
+      cout << "State : " << s << "  ";//Outputs the state value.
+  		cout << "elasped time : " << e << '\n';//Outputs the elasped value.
       cout << "green for straight and right going traffic from west and east,\nred for all others\n";
 
       for(i; i < 12; i++){
