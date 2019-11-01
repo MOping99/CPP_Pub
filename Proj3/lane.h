@@ -14,7 +14,7 @@ class Lane{
 
     int size();
 
-    void pop(int start, int end, bool verbose);
+    double pop(int start, int end, bool verbose);
 
 };
 

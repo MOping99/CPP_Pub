@@ -41,7 +41,7 @@ int Lane::size(){
 
 }
 
-void Lane::pop(int start, int end, bool verbose){
+double Lane::pop(int start, int end, bool verbose){
   double wait = 0;
   if(verbose == true){
   cout << "Popping in time interval [" << start << ", " << end << "] :" << endl;}
@@ -61,4 +61,6 @@ void Lane::pop(int start, int end, bool verbose){
   }
   if(verbose == true){
   cout << "sum of waiting times : " << wait << endl;}
+
+  return wait;
 }
