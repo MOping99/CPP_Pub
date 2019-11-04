@@ -17,7 +17,21 @@ class Board{
 
   public:
 
-    Board(int n, int dimen);
+    Board(int n, int dimen){
+
+      int number = n;
+
+      for(int i = 0; i < dimen; i++){
+        vector<int> temp;
+      for(int j = 0; j < dimen; j++){
+        int tempint = rand() % n;
+        temp.push_back(tempint);
+        }
+        board.push_back(temp);
+      }
+
+
+    };
 
     int dimension();
 
@@ -29,8 +43,18 @@ class Board{
 
     bool swap(int i, int j);
 
-    friend ostream &operator<<(ostream &os, const Board &Obj);
+    friend ostream &operator<<(ostream &os, const Board &Obj){
 
-}
+      for(int i = 0; i < Obj.number; i++){
+        for(int j = 0; j < Obj.number; j++){
+          os << Obj.board[i][j] << " ";
+        }
+        os << "\n";
+      }
+
+      return os;
+
+    }
+};
 
 #endif
