@@ -14,13 +14,24 @@ class Board{
 
   private:
     int number;
+    vector<vector<int>> board;
 
 
   public:
-    friend ostream &operator<<(ostream &os, const Monomial &Obj){
-      os << Obj.symbol << "^" << Obj.exponent;
-      return os;
-    };
+
+    Board(int n, int dimen);
+
+    int dimension();
+
+    int hcount(int index);
+
+    int vcount(int index);
+
+    void shift(int hin, int vin);
+
+    bool swap(int i, int j);
+
+    friend ostream &operator<<(ostream &os, const Board &Obj);
 
 }
 
