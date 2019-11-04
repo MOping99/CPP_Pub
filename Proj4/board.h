@@ -7,7 +7,6 @@
 #include <stdlib.h>
 #include <vector>
 
-
 using namespace std;
 
 class Board{
@@ -15,7 +14,6 @@ class Board{
   private:
     int number;
     vector<vector<int>> board;
-
 
   public:
 
