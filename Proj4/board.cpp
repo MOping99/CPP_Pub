@@ -2,6 +2,21 @@
 
 #include "board.h"
 
+Board::Board(int n, int dimen){
+
+      int number = n;
+      int dim = dimen;
+
+      for(int i = 0; i < dim; i++){
+        vector<int> temp;
+        for(int j = 0; j < dim; j++){
+          int tempint = rand() % n;
+          temp.push_back(tempint);
+        }
+        board.push_back(temp);
+      }
+}
+
 
 int Board::dimension(){
 

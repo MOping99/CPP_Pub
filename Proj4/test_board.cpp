@@ -5,9 +5,10 @@
 
 int main(){
 
-    Board Game = Board(3, 5);
+    Board Game = Board(10, 10);
 
     cout << Game;
 
     return 0;
+    
 }
