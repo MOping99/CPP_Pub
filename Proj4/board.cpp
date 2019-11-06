@@ -2,14 +2,13 @@
 
 #include "board.h"
 
-Board::Board(int n, int dimen){
+Board::Board(int dimen, int n){
 
       int number = n;
-      int dim = dimen;
 
-      for(int i = 0; i < dim; i++){
+      for(int i = 0; i < dimen; i++){
         vector<int> temp;
-        for(int j = 0; j < dim; j++){
+        for(int j = 0; j < dimen; j++){
           int tempint = rand() % n;
           temp.push_back(tempint);
         }
@@ -18,32 +17,89 @@ Board::Board(int n, int dimen){
 }
 
 
-int Board::dimension(){
+int Board::dimension()
+{return board.size();}
 
-
-
+int Board::hcount(int row, int col)
+{
+	int count = 1, val = board[row][col], n = 1;
+	while(val == board[row][col] && col-n >= 0)
+	{
+		if(board[row][col-n] == val)
+		{
+			count++;
+		}
+		val = board[row][col-n];
+		n++;
+	}
+	
+	val = board[row][col];
+	n = 1;
+	while(val == board[row][col])
+	{
+		if(board[row][col+n] == val && col+n < board.size())
+		{
+			count++;
+		}
+		val = board[row][col+n];
+		n++;
+	}
+	
+	return count;
 }
 
-int Board::hcount(int index){
-
-
-
+int Board::vcount(int row, int col)
+{
+	int count = 1, val = board[row][col], n = 1;
+	while(val == board[row][col] && row-n >= 0 )
+	{
+		if(board[row-n][col] == val)
+		{
+			count++;
+		}
+		val = board[row-n][col];
+		n++;
+	}
+	
+	val = board[row][col];
+	n = 1;
+	while(val == board[row][col] && row+n < board.size())
+	{
+		if(board[row+n][col] == val)
+		{
+			count++;
+		}
+		val = board[row+n][col];
+		n++;
+	}
+	
+	return count;
 }
 
-int Board::vcount(int index){
-
-
-
+void Board::shift(int hin, int vin)
+{
+	for(int i = 0; i <= vin; i++)
+	{
+		board[hin][i] = rand() % number;
+	}
 }
 
-void Board::shift(int hin, int vin){
-
-
-
+bool Board::swap(int i, int j)
+{
+	bool canSwap = false;
+	
+	return canSwap;
 }
 
-bool Board::swap(int i, int j){
+ostream &operator<<(ostream &os, const Board &Obj){
 
+      for(int i = 0; i < Obj.board.size(); i++){
+        for(int j = 0; j < Obj.board.size(); j++){
+          os << Obj.board[i][j] << " ";
+        }
+        os << "\n";
+      }
 
+      return os;
 
-}
+    }

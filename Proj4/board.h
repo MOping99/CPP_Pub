@@ -1,4 +1,5 @@
 // MCS 360 Project Three by Mikael Opingari and Daniel Zagal
+//board.h
 
 #ifndef BOARD_H
 #define BOARD_H
@@ -17,30 +18,19 @@ class Board{
 
   public:
 
-    Board(int n, int dimen);
+    Board(int dimen, int n);
 
     int dimension();
 
-    int hcount(int index);
+    int hcount(int row, int col);
 
-    int vcount(int index);
+    int vcount(int row, int col);
 
     void shift(int hin, int vin);
 
     bool swap(int i, int j);
 
-    friend ostream &operator<<(ostream &os, const Board &Obj){
-
-      for(int i = 0; i < Obj.board.size(); i++){
-        for(int j = 0; j < Obj.board.size(); j++){
-          os << Obj.board[i][j] << " ";
-        }
-        os << "\n";
-      }
-
-      return os;
-
-    }
+    friend ostream &operator<<(ostream &os, const Board &Obj);
 };
 
 #endif
