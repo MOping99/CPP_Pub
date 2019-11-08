@@ -32,7 +32,7 @@ int Board::hcount(int row, int col)
 		val = board[row][col-n];
 		n++;
 	}
-	
+
 	val = board[row][col];
 	n = 1;
 	while(val == board[row][col])
@@ -44,7 +44,7 @@ int Board::hcount(int row, int col)
 		val = board[row][col+n];
 		n++;
 	}
-	
+
 	return count;
 }
 
@@ -60,7 +60,7 @@ int Board::vcount(int row, int col)
 		val = board[row-n][col];
 		n++;
 	}
-	
+
 	val = board[row][col];
 	n = 1;
 	while(val == board[row][col] && row+n < board.size())
@@ -72,7 +72,7 @@ int Board::vcount(int row, int col)
 		val = board[row+n][col];
 		n++;
 	}
-	
+
 	return count;
 }
 
@@ -87,7 +87,7 @@ void Board::shift(int hin, int vin)
 bool Board::swap(int i, int j)
 {
 	bool canSwap = false;
-	
+
 	return canSwap;
 }
 

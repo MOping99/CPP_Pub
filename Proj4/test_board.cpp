@@ -15,5 +15,5 @@ int main(){
 	cout << Game << endl;
 
 	return 0;
-    
+
 }
