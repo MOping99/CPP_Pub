@@ -4,19 +4,18 @@
 
 Board::Board(int dimen, int n){
 
-      number = n;
+  number = n;
 
-      cout << "Generating a " << dimen << "-by-" << dimen << " board with " << number <<  " different items ..." << endl;
-      cout << "The board :" << endl;
+  cout << "Generating a " << dimen << "-by-" << dimen << " board with " << number <<  " different items ..." << endl;
 
-      for(int i = 0; i < dimen; i++){
-        vector<int> temp;
-        for(int j = 0; j < dimen; j++){
-          int tempint = rand() % n;
-          temp.push_back(tempint);
-        }
-        board.push_back(temp);
-      }
+  for(int i = 0; i < dimen; i++){
+    vector<int> temp;
+    for(int j = 0; j < dimen; j++){
+      int tempint = rand() % n;
+      temp.push_back(tempint);
+    }
+    board.push_back(temp);
+  }
 }
 
 

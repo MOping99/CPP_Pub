@@ -16,6 +16,8 @@ int main(){
 
 	Board Game = Board(dim, num);
 
+	cout << "The board :" << endl;
+
 	cout << Game;
 
 	cout << "The horizontal counts : " << endl;
