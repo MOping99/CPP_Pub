@@ -35,9 +35,8 @@ int main(){
 		}
 		cout << endl;
 	}
-	//cout << Game.vcount(1, 4) << "\n\n";
-	//Game.swap(3,1);
-	//cout << Game << endl;
+
+	//Need to ask how/what swap wants us to do.
 
 	return 0;
 
