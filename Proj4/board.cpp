@@ -78,11 +78,11 @@ int Board::vcount(int row, int col)
 	return count;
 }
 
-void Board::shift(int hin, int vin)
+void Board::shift(int row, int col)
 {
-	for(int i = 0; i <= vin; i++)
+	for(int i = 0; i <= row; i++)
 	{
-		board[hin][i] = rand() % number;
+	   board[i][col] = rand() % number;
 	}
 }
 

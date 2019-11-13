@@ -36,7 +36,43 @@ int main(){
 		cout << endl;
 	}
 
-	//Need to ask how/what swap wants us to do.
+	cout << "Current Board :\n" << Game;
+	int count = 0;
+	bool contain3 = true;
+
+	while(contain3){
+	vector<int> counts;
+
+	for(int i = 0; i < Game.dimension(); i++){
+		for(int j = 0; j < Game.dimension(); j++){
+			if(Game.vcount(i, j) >= 3){
+				count++;
+				Game.shift(i, j);
+				cout << "the board after shift " << count <<" :\n" << Game;
+			}
+		}
+	}
+
+	for(int i = 0; i < Game.dimension(); i++){
+		for(int j = 0; j < Game.dimension(); j++){
+			counts.push_back(Game.vcount(i, j));
+		}
+
+	contain3 = false;
+
+	for(int i = 0; i < counts.size(); i++){
+		if(counts[i] >= 3){
+			contain3 = true;
+		}
+	}
+
+  }
+
+}
+
+	cout << "total number of shifts : " << count << endl;
+
+
 
 	return 0;
 
