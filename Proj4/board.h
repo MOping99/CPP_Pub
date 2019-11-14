@@ -6,7 +6,9 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <time.h>
 #include <vector>
+#include <assert.h>
 
 using namespace std;
 

@@ -80,6 +80,7 @@ int Board::vcount(int row, int col)
 
 void Board::shift(int row, int col)
 {
+  assert(number > 1 && "This means every time we shift the same numbers will always appear");
 	for(int i = 0; i <= row; i++)
 	{
 	   board[i][col] = rand() % number;
@@ -88,7 +89,11 @@ void Board::shift(int row, int col)
 
 bool Board::swap(int i, int j)
 {
+  assert(i >= 0 && i <= this -> dimension() && "You're trying to swap an item that doesn't exist;");
+  assert(j >= 0 && j <= this -> dimension() && "You're trying to swap an item that doesn't exist;");
 	bool canSwap = false;
+
+  
 
 	return canSwap;
 }

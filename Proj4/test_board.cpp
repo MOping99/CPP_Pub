@@ -5,6 +5,7 @@
 
 
 int main(){
+	//srand(time(NULL));
 
 	int dim, num;
 
@@ -36,7 +37,28 @@ int main(){
 		cout << endl;
 	}
 
-	cout << "Current Board :\n" << Game;
+	int rowind, colind;
+	bool play = true;
+	int score = 0;
+	string yn;
+
+	while(play){
+
+	cout << "-> give a row index : ";
+	cin >> rowind;
+	cout << "-> give a column index : ";
+	cin >> colind;
+
+	if(Game.swap(rowind, colind)){
+		score++;
+		cout << "The swap succeeded. Your score is " << score << endl;
+		cout << "Current Board :\n" << Game;
+	}
+	else{
+		cout << "The swap failed." << endl;
+		}
+
+
 	int count = 0;
 	bool contain3 = true;
 
@@ -66,12 +88,26 @@ int main(){
 		}
 	}
 
-  }
+	}
 
 }
 
 	cout << "total number of shifts : " << count << endl;
 
+
+
+	score += count;
+	cout << "Your score is " << score << ". Continue ? (y/n)";
+	cin >> yn;
+	if(yn == "y"){
+		play = true;
+	}
+	else{
+		play = false;
+	}
+
+
+	}
 
 
 	return 0;
