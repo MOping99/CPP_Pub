@@ -91,11 +91,27 @@ bool Board::swap(int i, int j)
 {
   assert(i >= 0 && i <= this -> dimension() && "You're trying to swap an item that doesn't exist;");
   assert(j >= 0 && j <= this -> dimension() && "You're trying to swap an item that doesn't exist;");
-	bool canSwap = false;
 
-  
+  if(i-1 >= 0){
+    int holder = board[i-1][j];
+    board[i-1][j] = board[i][j];
+    board[i][j] = holder;
+    if(this -> vcount(i, j) >= 3 || this -> vcount(i-1, j) >= 3){
+      return true;
+    }
+    else{
+      board[i][j] = board[i-1][j];
+      board[i-1][j] = holder;
+      return false;
+    }
+  }
 
-	return canSwap;
+  //Repeate the above statment changing it for the other cardinat directions
+  //in the checking if stament be sure to also look at the hcounts for the
+  //everything. We also need to consider the shift function removing horizontal
+  //3 or mores which mean editing the while loops.
+
+  return false;
 }
 
 ostream &operator<<(ostream &os, const Board &Obj){
