@@ -81,10 +81,18 @@ int Board::vcount(int row, int col)
 void Board::shift(int row, int col)
 {
   assert(number > 1 && "This means every time we shift the same numbers will always appear");
-	for(int i = 0; i <= row; i++)
+if(this -> vcount(row, col) >= 3){
+  for(int i = 0; i <= row; i++)
 	{
 	   board[i][col] = rand() % number;
 	}
+}
+if(this -> hcount(row, col) >= 3){
+  for(int j = 0; j <= col; j++)
+	{
+	   board[row][j] = rand() % number;
+	}
+}
 }
 
 bool Board::swap(int i, int j)

@@ -24,7 +24,7 @@ int main(){
 
 	for(int i = 0; i < Game.dimension(); i++){
 		for(int j = 0; j < Game.dimension(); j++){
-			if(Game.vcount(i, j) >= 3){
+			if(Game.vcount(i, j) >= 3  || Game.hcount(i, j) >= 3){
 				Game.shift(i, j);
 			}
 		}
@@ -33,6 +33,7 @@ int main(){
 	for(int i = 0; i < Game.dimension(); i++){
 		for(int j = 0; j < Game.dimension(); j++){
 			buffer.push_back(Game.vcount(i, j));
+			buffer.push_back(Game.hcount(i, j));
 		}
 
 	contain3 = false;
@@ -97,7 +98,7 @@ int main(){
 
 	for(int i = 0; i < Game.dimension(); i++){
 		for(int j = 0; j < Game.dimension(); j++){
-			if(Game.vcount(i, j) >= 3){
+			if(Game.vcount(i, j) >= 3 || Game.hcount(i, j) >= 3){
 				count++;
 				Game.shift(i, j);
 				cout << "the board after shift " << count <<" :\n" << Game;
@@ -108,6 +109,7 @@ int main(){
 	for(int i = 0; i < Game.dimension(); i++){
 		for(int j = 0; j < Game.dimension(); j++){
 			buffer.push_back(Game.vcount(i, j));
+			buffer.push_back(Game.hcount(i, j));
 		}
 
 	contain3 = false;
