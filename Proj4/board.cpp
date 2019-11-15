@@ -19,16 +19,16 @@ Board::Board(int dimen, int n){
 }
 
 
-int Board::dimension()
-{return board.size();}
+int Board::dimension(){
+  return board.size();
+}
 
-int Board::hcount(int row, int col)
-{
+int Board::hcount(int row, int col){
+
 	int count = 1, val = board[row][col], n = 1;
-	while(val == board[row][col] && col-n >= 0)
-	{
-		if(board[row][col-n] == val)
-		{
+
+	while(val == board[row][col] && col-n >= 0){
+		if(board[row][col-n] == val){
 			count++;
 		}
 		val = board[row][col-n];
@@ -37,10 +37,9 @@ int Board::hcount(int row, int col)
 
 	val = board[row][col];
 	n = 1;
-	while(val == board[row][col])
-	{
-		if(board[row][col+n] == val && col+n < board.size())
-		{
+
+	while(val == board[row][col]){
+		if(board[row][col+n] == val && col+n < board.size()){
 			count++;
 		}
 		val = board[row][col+n];
@@ -50,13 +49,12 @@ int Board::hcount(int row, int col)
 	return count;
 }
 
-int Board::vcount(int row, int col)
-{
+int Board::vcount(int row, int col){
+
 	int count = 1, val = board[row][col], n = 1;
-	while(val == board[row][col] && row-n >= 0 )
-	{
-		if(board[row-n][col] == val)
-		{
+
+	while(val == board[row][col] && row-n >= 0 ){
+		if(board[row-n][col] == val){
 			count++;
 		}
 		val = board[row-n][col];
@@ -65,10 +63,9 @@ int Board::vcount(int row, int col)
 
 	val = board[row][col];
 	n = 1;
-	while(val == board[row][col] && row+n < board.size())
-	{
-		if(board[row+n][col] == val)
-		{
+
+	while(val == board[row][col] && row+n < board.size()){
+		if(board[row+n][col] == val){
 			count++;
 		}
 		val = board[row+n][col];
@@ -78,31 +75,28 @@ int Board::vcount(int row, int col)
 	return count;
 }
 
-void Board::shift(int row, int col)
-{
+void Board::shift(int row, int col){
+
   assert(number > 1 && "This means every time we shift the same numbers will always appear");
-if(this -> vcount(row, col) >= 3){
-  for(int i = 0; i <= row; i++)
-	{
+
+  if(this -> vcount(row, col) >= 3){
+    for(int i = 0; i <= row; i++){
 	   board[i][col] = rand() % number;
-	}
-}
-if(this -> hcount(row, col) >= 3){
-  for(int j = 0; j <= col; j++)
-	{
+	  }
+  }
+
+  if(this -> hcount(row, col) >= 3){
+    for(int j = 0; j <= col; j++){
 	   board[row][j] = rand() % number;
-	}
-}
+	  }
+  }
 }
 
-bool Board::swap(int i, int j)
-{
+bool Board::swap(int i, int j){
   assert(i >= 0 && i <= this -> dimension() && "You're trying to swap an item that doesn't exist;");
   assert(j >= 0 && j <= this -> dimension() && "You're trying to swap an item that doesn't exist;");
 
   int holder;
-  holder = board[i][j];
-  cout << holder << endl;
 
   if(i-1 >= 0){
     holder = board[i-1][j];
@@ -159,13 +153,12 @@ bool Board::swap(int i, int j)
 
 ostream &operator<<(ostream &os, const Board &Obj){
 
-      for(int i = 0; i < Obj.board.size(); i++){
-        for(int j = 0; j < Obj.board.size(); j++){
-          os << Obj.board[i][j] << " ";
-        }
-        os << "\n";
-      }
-
-      return os;
-
+  for(int i = 0; i < Obj.board.size(); i++){
+    for(int j = 0; j < Obj.board.size(); j++){
+      os << Obj.board[i][j] << " ";
     }
+    os << "\n";
+  }
+
+  return os;
+}
