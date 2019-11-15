@@ -17,6 +17,36 @@ int main(){
 
 	Board Game = Board(dim, num);
 
+	bool contain3 = true;
+
+	while(contain3){
+	vector<int> buffer;
+
+	for(int i = 0; i < Game.dimension(); i++){
+		for(int j = 0; j < Game.dimension(); j++){
+			if(Game.vcount(i, j) >= 3){
+				Game.shift(i, j);
+			}
+		}
+	}
+
+	for(int i = 0; i < Game.dimension(); i++){
+		for(int j = 0; j < Game.dimension(); j++){
+			buffer.push_back(Game.vcount(i, j));
+		}
+
+	contain3 = false;
+
+	for(int i = 0; i < buffer.size(); i++){
+		if(buffer[i] >= 3){
+			contain3 = true;
+		}
+	}
+
+	}
+
+}
+
 	cout << "The board :" << endl;
 
 	cout << Game;
@@ -60,10 +90,10 @@ int main(){
 
 
 	int count = 0;
-	bool contain3 = true;
+	contain3 = true;
 
 	while(contain3){
-	vector<int> counts;
+	vector<int> buffer;
 
 	for(int i = 0; i < Game.dimension(); i++){
 		for(int j = 0; j < Game.dimension(); j++){
@@ -77,13 +107,13 @@ int main(){
 
 	for(int i = 0; i < Game.dimension(); i++){
 		for(int j = 0; j < Game.dimension(); j++){
-			counts.push_back(Game.vcount(i, j));
+			buffer.push_back(Game.vcount(i, j));
 		}
 
 	contain3 = false;
 
-	for(int i = 0; i < counts.size(); i++){
-		if(counts[i] >= 3){
+	for(int i = 0; i < buffer.size(); i++){
+		if(buffer[i] >= 3){
 			contain3 = true;
 		}
 	}
