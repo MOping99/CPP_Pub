@@ -1,19 +1,21 @@
 // MCS 360 Project Three by Mikael Opingari and Daniel Zagal
-//test_board.cpp
 
+//We import all our functions for the program
 #include "board.cpp"
 
 
 int main(){
+	//We added this so that everyboard will always be different
 	srand(time(NULL));
 
+	//We initialize 2 variables that set how large our square board will be and how many different numbers
+	//will be in the board, we then ask and recieve those numbers from the user before finally initalizing
+	//the board we call game
 	int dim, num;
-
 	cout << "Give the dimension of the board : ";
 	cin >> dim;
 	cout << "Give the number of different items : ";
 	cin >> num;
-
 	Board Game = Board(dim, num);
 
 	/*
@@ -64,7 +66,7 @@ int main(){
 	}
 
 	cout << "The board :" << Game;
-
+	//After having printed out the board, we loop through the board twice once to print out a board consisting of hcounts
 	cout << "The horizontal counts : " << endl;
 	for(int i = 0; i < Game.dimension(); i++){
 		for(int j = 0; j < Game.dimension(); j++){
@@ -72,7 +74,7 @@ int main(){
 		}
 		cout << endl;
 	}
-
+	//and the other printing out the vcounts of the board
 	cout << "The vertical counts : " << endl;
 	for(int i = 0; i < Game.dimension(); i++){
 		for(int j = 0; j < Game.dimension(); j++){
@@ -130,8 +132,10 @@ int main(){
 			for(int i = 0; i < Game.dimension(); i++){
 				for(int j = 0; j < Game.dimension(); j++){
 					if(Game.vcount(i, j) >= 3 || Game.hcount(i, j) >= 3){
-						count++;
 						Game.shift(i, j);
+						//These 2 lines are the only substantial differences then the previous contain3 loop, it tracks the
+						//amount of swaps which are later added to the score and the other prints the board after a shift
+						count++;
 						cout << "the board after shift " << count <<" :\n" << Game;
 					}
 				}
