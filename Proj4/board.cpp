@@ -97,7 +97,7 @@ This section is one of the most complex in the entire code. Since we need to loo
 the results for each possiblity it leads to us having a massively nested if statment.
 */
 
-//On input we we take a cordinate of the board and eventually output wether or not what we did was successful.
+//On input we we take a coordinate of the board and eventually output wether or not what we did was successful.
 bool Board::swap(int i, int j){
   //We begin with assertions here to stop the player from from accessing non-existent information, the && you see is
   //used so that users are able to read the reasoning when the assertion fails.
@@ -113,7 +113,7 @@ bool Board::swap(int i, int j){
 
   //Given we have a row above us,
   if(i-1 >= 0){
-    //We store the value above us in holder then make the cordinate above us equal to the chosen one as well as making them
+    //We store the value above us in holder then make the coordinate above us equal to the chosen one as well as making them
     //chosen one equal to the value in holder.
     holder = board[i-1][j];
     board[i-1][j] = board[i][j];
