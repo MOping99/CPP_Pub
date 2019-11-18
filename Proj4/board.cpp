@@ -1,94 +1,112 @@
 // MCS 360 Project Three by Mikael Opingari and Daniel Zagal
+//board.cpp
 
 #include "board.h"
 
-Board::Board(int dimen, int n){
+Board::Board(int dimen, int n)//The class constructer for board, taking in a dimension integer to construct a square board and a range integer.
+{
+  number = n;//Stores 'n' to be used as the range during random number generation.
 
-  number = n;
+  cout << "Generating a " << dimen << "-by-" << dimen << " board with " << number <<  " different items ..." << endl;//Outputs a message for user.
 
-  cout << "Generating a " << dimen << "-by-" << dimen << " board with " << number <<  " different items ..." << endl;
-
-  for(int i = 0; i < dimen; i++){
-    vector<int> temp;
-    for(int j = 0; j < dimen; j++){
-      int tempint = rand() % n;
-      temp.push_back(tempint);
+  for(int i = 0; i < dimen; i++)//Iterates through equal to the 'dimen' value to create 1d vectors to be placed in the board 2d vector.
+  {
+    vector<int> temp;//Creates a temporary 1d vector.
+    for(int j = 0; j < dimen; j++)//Iterates through equal to 'dimen' to fill the 'temp' vector with random values.
+    {
+      int tempint = rand() % n;//Creates and stores a random integer in range 'n'.
+      temp.push_back(tempint);//Pushes back the new random integer into the temp.
     }
-    board.push_back(temp);
+    board.push_back(temp);//Pushes back the 'temp' vector into 'board' to fill out a square 2d vector.
   }
 }
 
 
-int Board::dimension(){
-  return board.size();
-}
+int Board::dimension()//Returns the dimension of the board.
+{return board.size();}
 
-int Board::hcount(int row, int col){
-
+int Board::hcount(int row, int col)//Returns an integer equal to the number of values that are equal to and horizontally adjacent to the given position.
+{
 	int count = 1, val = board[row][col], n = 1;
+	/*Creates and sets integer variables to store the value we are seaching for, the count of occurences
+	of stored value, and an 'n' used to iterate in one of the directions.*/
 
-	while(val == board[row][col] && col-n >= 0){
-		if(board[row][col-n] == val){
+	while(val == board[row][col] && col-n >= 0)//Continues until the next 'val' is not the same as the value in the given input, or reached the end of the column.
+	{
+		if(board[row][col-n] == val)//Adds to count if the the next number in the column equals the value 'val'.
+		{
 			count++;
 		}
-		val = board[row][col-n];
-		n++;
+		val = board[row][col-n];//Sets 'val' equal to the current board value to be checked by the while loop.
+		n++;//Adds to 'n' to iterate through the column leftward.
 	}
 
-	val = board[row][col];
-	n = 1;
+	val = board[row][col];//Resets 'val'.
+	n = 1;//Resets 'n'.
 
-	while(val == board[row][col]){
-		if(board[row][col+n] == val && col+n < board.size()){
+	while(val == board[row][col] && col+n < board.size())//Continues until the next 'val' is not the same as the value in the given input, or reached the end of the column.
+	{
+		if(board[row][col+n] == val)//Adds to count if the the next number in the column equals the value 'val'.
+		{
 			count++;
 		}
-		val = board[row][col+n];
-		n++;
+		val = board[row][col+n];//Sets 'val' equal to the current board value to be checked by the while loop.
+		n++;//Adds to 'n' to iterate through the column rightward.
 	}
 
-	return count;
+	return count;//Returns the 'count'.
 }
 
-int Board::vcount(int row, int col){
-
+int Board::vcount(int row, int col)//Returns an integer equal to the number of values that are equal to and vertically adjacent to the given position.
+{
 	int count = 1, val = board[row][col], n = 1;
+	/*Creates and sets integer variables to store the value we are seaching for, the count of occurences
+	of stored value, and an 'n' used to iterate in one of the directions.*/
 
-	while(val == board[row][col] && row-n >= 0 ){
-		if(board[row-n][col] == val){
+	while(val == board[row][col] && row-n >= 0 )//Continues until the next 'val' is not the same as the value in the given input, or reached the end of the column.
+	{
+		if(board[row-n][col] == val)//Adds to count if the the next number in the column equals the value 'val'.
+		{
 			count++;
 		}
-		val = board[row-n][col];
-		n++;
+		val = board[row-n][col];//Sets 'val' equal to the current board value to be checked by the while loop.
+		n++;//Adds to 'n' to iterate through the column upward.
 	}
 
-	val = board[row][col];
-	n = 1;
+	val = board[row][col];//Resets 'val'.
+	n = 1;//Resets 'n'.
 
-	while(val == board[row][col] && row+n < board.size()){
-		if(board[row+n][col] == val){
+	while(val == board[row][col] && row+n < board.size())//Continues until the next 'val' is not the same as the value in the given input, or reached the end of the column.
+	{
+		if(board[row+n][col] == val)//Adds to count if the the next number in the column equals the value 'val'.
+		{
 			count++;
 		}
-		val = board[row+n][col];
-		n++;
+		val = board[row+n][col];//Sets 'val' equal to the current board value to be checked by the while loop.
+		n++;//Adds to 'n' to iterate through the column downward.
 	}
 
-	return count;
+	return count;//Returns the count.
 }
 
-void Board::shift(int row, int col){
+void Board::shift(int row, int col)//Alters the board at and above the given position, replacing the numbers with randomly generated numbers.
+{
+  assert(number > 1 && "This means every time we shift the same numbers will always appear");//Asserts that the board isnt a 1x1 board when shift is used.
 
-  assert(number > 1 && "This means every time we shift the same numbers will always appear");
-
-  if(this -> vcount(row, col) >= 3){
-    for(int i = 0; i <= row; i++){
-	   board[i][col] = rand() % number;
-	  }
+  if(this -> vcount(row, col) >= 3)//Checks if the board position matches 3.
+  {
+    for(int i = 0; i <= row; i++)//Iterates through row.
+    {
+      board[i][col] = rand() % number;//Regenerates a random number for the position.
+    }
   }
 
-  if(this -> hcount(row, col) >= 3){
-    for(int j = 0; j <= col; j++){
-	   board[row][j] = rand() % number;
-	  }
+  if(this -> hcount(row, col) >= 3)//Checks if the board position matches 3.
+  {
+    for(int j = 0; j <= col; j++)//Iterates through column.
+    {
+      board[row][j] = rand() % number;//Regenerates a random number for the position.
+    }
   }
 }
 
@@ -182,14 +200,16 @@ bool Board::swap(int i, int j){
   return false;
 }
 
-ostream &operator<<(ostream &os, const Board &Obj){
-
-  for(int i = 0; i < Obj.board.size(); i++){
-    for(int j = 0; j < Obj.board.size(); j++){
-      os << Obj.board[i][j] << " ";
+ostream &operator<<(ostream &os, const Board &Obj)//defines the friendly output overload to allow the board object to be printed in the form of a square board.
+{
+  for(int i = 0; i < Obj.board.size(); i++)//Loops through the rows of the vector.
+  {
+    for(int j = 0; j < Obj.board.size(); j++)//Loops through the columns of the vector.
+    {
+      os << Obj.board[i][j] << " ";//Outputs the integer at the current row i and column j followed by a space.
     }
-    os << "\n";
+    os << "\n";//Starts new line after all columns of a specific row is printed.
   }
 
-  return os;
+  return os;//Returns os to be printed.
 }
