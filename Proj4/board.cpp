@@ -119,8 +119,8 @@ the results for each possiblity it leads to us having a massively nested if stat
 bool Board::swap(int i, int j){
   //We begin with assertions here to stop the player from from accessing non-existent information, the && you see is
   //used so that users are able to read the reasoning when the assertion fails.
-  assert(i >= 0 && i <= this -> dimension() && "You're trying to swap an item that doesn't exist;");
-  assert(j >= 0 && j <= this -> dimension() && "You're trying to swap an item that doesn't exist;");
+  assert(i >= 0 && i <= this -> dimension()-1 && "You're trying to swap an item that doesn't exist;");
+  assert(j >= 0 && j <= this -> dimension()-1 && "You're trying to swap an item that doesn't exist;");
 
   //We initalize an int variable called holder, which lets swap the values of based on the cardinal direction we check
   //without accidentally losing information
@@ -144,57 +144,10 @@ bool Board::swap(int i, int j){
       //We swap back the values if we don't have a chain and instantly go to look at if we can access the data from the row below
       board[i][j] = board[i-1][j];
       board[i-1][j] = holder;
-      //Then given we have a row below us,
-      if(i+1 <= this -> dimension()-1){
-        //We store everything as before using the same holder variable
-        holder = board[i+1][j];
-        board[i+1][j] = board[i][j];
-        board[i][j] = holder;
-        //As before we check to see wether or not we make an adequate chain and either return true and holding the new variable
-        //locations or...
-        if(this -> vcount(i, j) >= 3 || this -> vcount(i+1, j) >= 3 || this -> hcount(i, j) >= 3 || this -> hcount(i+1, j) >= 3){
-          return true;
-        }
-        else{
-          //We swap back the variable and begin looking at the columns
-          board[i][j] = board[i+1][j];
-          board[i+1][j] = holder;
-          if(j-1 >= 0){
-            //Like before we swap looking to make sure there is space on the left then swap using holder
-            holder = board[i][j-1];
-            board[i][j-1] = board[i][j];
-            board[i][j] = holder;
-            //We do the check yet again for all possible chains and either return true holding where everything is or we...
-            if(this -> vcount(i, j) >= 3 || this -> vcount(i, j-1) >= 3 || this -> hcount(i, j) >= 3 || this -> hcount(i, j-1) >= 3){
-              return true;
-            }
-            else{
-              //We sawp back and go in for the final check
-              board[i][j] = board[i][j-1];
-              board[i][j-1] = holder;
-              if(j+1 <= this -> dimension()-1){
-                //After checking to make sure we can go to the right we swap
-                holder = board[i][j+1];
-                board[i][j+1] = board[i][j];
-                board[i][j] = holder;
-                //The final check is made and we go to return true, if this one does not work all cardinal directions have been checked
-                if(this -> vcount(i, j) >= 3 || this -> vcount(i, j+1) >= 3 || this -> hcount(i, j) >= 3 || this -> hcount(i, j+1) >= 3){
-                  return true;
-                }
-                else{
-                  //Since being here means we failed, we swap everything to where is should be and return to the the user a false boolean
-                  //to show that we failed.
-                  board[i][j] = board[i][j+1];
-                  board[i][j+1] = holder;
-                  return false;
-                }
-              }
-            }
-          }
-        }
-      }
     }
   }
+
+  //Then given we have a row below us,
   if(i+1 <= this -> dimension()-1){
     //We store everything as before using the same holder variable
     holder = board[i+1][j];
@@ -209,40 +162,9 @@ bool Board::swap(int i, int j){
       //We swap back the variable and begin looking at the columns
       board[i][j] = board[i+1][j];
       board[i+1][j] = holder;
-      if(j-1 >= 0){
-        //Like before we swap looking to make sure there is space on the left then swap using holder
-        holder = board[i][j-1];
-        board[i][j-1] = board[i][j];
-        board[i][j] = holder;
-        //We do the check yet again for all possible chains and either return true holding where everything is or we...
-        if(this -> vcount(i, j) >= 3 || this -> vcount(i, j-1) >= 3 || this -> hcount(i, j) >= 3 || this -> hcount(i, j-1) >= 3){
-          return true;
-        }
-        else{
-          //We sawp back and go in for the final check
-          board[i][j] = board[i][j-1];
-          board[i][j-1] = holder;
-          if(j+1 <= this -> dimension()-1){
-            //After checking to make sure we can go to the right we swap
-            holder = board[i][j+1];
-            board[i][j+1] = board[i][j];
-            board[i][j] = holder;
-            //The final check is made and we go to return true, if this one does not work all cardinal directions have been checked
-            if(this -> vcount(i, j) >= 3 || this -> vcount(i, j+1) >= 3 || this -> hcount(i, j) >= 3 || this -> hcount(i, j+1) >= 3){
-              return true;
-            }
-            else{
-              //Since being here means we failed, we swap everything to where is should be and return to the the user a false boolean
-              //to show that we failed.
-              board[i][j] = board[i][j+1];
-              board[i][j+1] = holder;
-              return false;
-            }
-          }
-        }
-      }
     }
   }
+
   if(j-1 >= 0){
     //Like before we swap looking to make sure there is space on the left then swap using holder
     holder = board[i][j-1];
@@ -256,25 +178,9 @@ bool Board::swap(int i, int j){
       //We sawp back and go in for the final check
       board[i][j] = board[i][j-1];
       board[i][j-1] = holder;
-      if(j+1 <= this -> dimension()-1){
-        //After checking to make sure we can go to the right we swap
-        holder = board[i][j+1];
-        board[i][j+1] = board[i][j];
-        board[i][j] = holder;
-        //The final check is made and we go to return true, if this one does not work all cardinal directions have been checked
-        if(this -> vcount(i, j) >= 3 || this -> vcount(i, j+1) >= 3 || this -> hcount(i, j) >= 3 || this -> hcount(i, j+1) >= 3){
-          return true;
-        }
-        else{
-          //Since being here means we failed, we swap everything to where is should be and return to the the user a false boolean
-          //to show that we failed.
-          board[i][j] = board[i][j+1];
-          board[i][j+1] = holder;
-          return false;
-        }
-      }
     }
   }
+
   if(j+1 <= this -> dimension()-1){
     //After checking to make sure we can go to the right we swap
     holder = board[i][j+1];
@@ -285,8 +191,8 @@ bool Board::swap(int i, int j){
       return true;
     }
     else{
-      //Since being here means we failed, we swap everything to where is should be and return to the the user a false boolean
-      //to show that we failed.
+    //Since being here means we failed, we swap everything to where is should be and return to the the user a false boolean
+    //to show that we failed.
       board[i][j] = board[i][j+1];
       board[i][j+1] = holder;
       return false;
