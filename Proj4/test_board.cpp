@@ -66,7 +66,7 @@ int main(){
 
 	}
 
-	cout << "The board :" << Game;
+	cout << "The board :\n" << Game;
 	//After having printed out the board, we loop through the board twice once to print out a board consisting of hcounts
 	cout << "The horizontal counts : " << endl;
 	for(int i = 0; i < Game.dimension(); i++){
