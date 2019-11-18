@@ -1,4 +1,5 @@
 // MCS 360 Project Three by Mikael Opingari and Daniel Zagal
+//test_board.cpp
 
 //We import all our functions for the program
 #include "board.cpp"
