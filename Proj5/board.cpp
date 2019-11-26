@@ -216,3 +216,4 @@ ostream &operator<<(ostream &os, const Board &Obj)//defines the friendly output 
 
   return os;//Returns os to be printed.
 }
+
