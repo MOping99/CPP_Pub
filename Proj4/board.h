@@ -16,7 +16,7 @@ class Board{
 
   private:
     int number;//Stores the range in which each integer of a board position can be in.
-    vector<vector<int>> board;//Used to store the integer values of the board for the game.
+    vector< vector<int> > board;//Used to store the integer values of the board for the game.
 
   public:
 
