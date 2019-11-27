@@ -5,6 +5,22 @@
 
 int main()
 {
+
+  /*        Code to setup game of a dynamic size & randomizer
+  //We added this so that everyboard will always be different
+  srand(time(NULL));
+
+  //We initialize 2 variables that set how large our square board will be and how many different numbers
+  //will be in the board, we then ask and recieve those numbers from the user before finally initalizing
+  //the board we call game
+  int dim, num;
+  cout << "Give the dimension of the board : ";
+  cin >> dim;
+  cout << "Give the number of different items : ";
+  cin >> num;
+  Board Game = Board(dim, num);
+  */
+
 	Board Game = Board(5,4);
 
   bool contain3 = true;
@@ -43,7 +59,7 @@ int main()
           contain3 = true;
         }
       }
-  
+
     }
 
   }
