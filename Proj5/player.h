@@ -12,8 +12,7 @@ class Player{
   private:
 	string name;
 	Board* board;
-	int level;
-  int score = 0;
+	int level, score;
 
   public:
 	Player(Board*, string, int);

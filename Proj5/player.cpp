@@ -11,6 +11,7 @@ Player::Player(Board* ptr_inBoard, string inName, int startLv = 0)
 	board = ptr_inBoard;
 	name = inName;
 	level = startLv;
+  score = 0;
 }
 
 int Player::get_level()
@@ -25,6 +26,6 @@ void Player::play()
 ostream &operator<<(ostream &os, const Player &Obj)
 {
 	os << "Player " << Obj.name << " at level " << Obj.level << " has scored " << Obj.score << ".\n" << "The shared board is\n" << *(Obj.board);
-	
+
 	return os;
 }
