@@ -64,7 +64,10 @@ int main()
 
   }
 
-	Player Daniel = Player(&Game, "Daniel", 1);
-	cout << Daniel;
+	Player CPU_Daniel = Player(&Game, "CPU_Daniel", 1);
+  Player CPU_Mikael = Player(&Game, "CPU_Mikael", 0);
+	cout << CPU_Daniel << CPU_Mikael;
+  CPU_Daniel.play();
+  CPU_Mikael.play();
 	return 0;
 }
