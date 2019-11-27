@@ -12,17 +12,18 @@ class Player{
   private:
 	string name;
 	Board* board;
-	int level, score;
+	int level;
+  int score = 0;
 
   public:
 	Player(Board*, string, int);
-	
+
 	int get_level();
-	
+
 	int get_score();
-	
+
 	void play();
-	
+
 	friend ostream &operator<<(ostream &os, const Player &Obj);
 };
 
