@@ -69,10 +69,29 @@ int main()
   Player CPU_Daniel = Player(&Game, "CPU_Daniel", 1);
   Player CPU_Genius = Player(&Game, "CPU_Genius", 2);
 	cout << CPU_Failure << Mikael << CPU_Daniel << CPU_Genius;
+
+  bool playing = true;
+  string yn;
+
+  while(playing){
+
   CPU_Failure.play();
   Mikael.play();
   CPU_Daniel.play();
   CPU_Genius.play();
+
+  cout << "Another round? ";
+  cin >> yn;
+  if(yn == "y"){
+		play = true;
+	}
+	else{
+		play = false;
+	}
+
+  }
+
+  cout << "Final Tally!" << endl;
   cout << CPU_Failure << Mikael << CPU_Daniel << CPU_Genius;
 	return 0;
 }
