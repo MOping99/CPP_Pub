@@ -64,11 +64,15 @@ int main()
 
   }
 
-	Player CPU_Daniel = Player(&Game, "CPU_Daniel", 1);
-  Player CPU_Mikael = Player(&Game, "CPU_Mikael", 0);
-	cout << CPU_Daniel << CPU_Mikael;
+  Player CPU_Failure = Player(&Game, "CPU_Failure", -1);
+  Player Mikael = Player(&Game, "Mikael", 0);
+  Player CPU_Daniel = Player(&Game, "CPU_Daniel", 1);
+  Player CPU_Genius = Player(&Game, "CPU_Genius", 2);
+	cout << CPU_Failure << Mikael << CPU_Daniel << CPU_Genius;
+  CPU_Failure.play();
+  Mikael.play();
   CPU_Daniel.play();
-  CPU_Mikael.play();
-  cout << CPU_Daniel << CPU_Mikael;
+  CPU_Genius.play();
+  cout << CPU_Failure << Mikael << CPU_Daniel << CPU_Genius;
 	return 0;
 }

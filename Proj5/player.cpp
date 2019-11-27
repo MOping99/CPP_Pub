@@ -21,6 +21,11 @@ int Player::get_score()
 {return score;}
 
 void Player::play(){
+  cout << this -> name << " it's you turn!" << endl;
+
+  if(this -> get_level() == -1){
+    cout << "Not Programmed\n" << "Would have picked random coordinate" << endl;
+  }
 
   if(this -> get_level() == 0){
     //We define the integers that will be used to pick a coordinate
@@ -94,12 +99,20 @@ void Player::play(){
   	//a "y" we go over the loop again and ask for a new coordinate to check swap on
   	cout << "total number of shifts : " << count << endl;
   	score += count;
-  	cout << "Your score " << name << " is " << score;
+  	cout << "Your score " << name << " is " << score << endl;
     play = false;
   }
 
 
 
+}
+
+if(this -> get_level() == 1){
+  cout << "Not Programmed\n" << "Would have picked first chain coordinate" << endl;
+}
+
+if(this -> get_level() == 2){
+  cout << "Not Programmed\n" << "Would have picked best chain coordinate" << endl;
 }
 
 }
