@@ -43,7 +43,7 @@ void Player::play(){
   		if(board -> swap(rowind, colind)){
   			score++;
   			cout << "The swap succeeded. Your score is " << score << endl;
-  			cout << "Current Board :\n" << this -> board;
+  			cout << "Current Board :\n" << *board;
   		}
   		else{
   			cout << "The swap failed." << endl;
@@ -67,7 +67,7 @@ void Player::play(){
   						//These 2 lines are the only substantial differences then the previous contain3 loop, it tracks the
   						//amount of swaps which are later added to the score and the other prints the board after a shift
   						count++;
-  						cout << "the board after shift " << count <<" :\n" << this -> board;
+  						cout << "the board after shift " << count <<" :\n" << *board;
   					}
   				}
   			}

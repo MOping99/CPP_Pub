@@ -69,5 +69,6 @@ int main()
 	cout << CPU_Daniel << CPU_Mikael;
   CPU_Daniel.play();
   CPU_Mikael.play();
+  cout << CPU_Daniel << CPU_Mikael;
 	return 0;
 }
