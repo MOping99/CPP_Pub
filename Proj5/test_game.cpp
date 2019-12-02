@@ -83,10 +83,10 @@ int main()
   cout << "Another round? ";
   cin >> yn;
   if(yn == "y"){
-		play = true;
+		playing = true;
 	}
 	else{
-		play = false;
+		playing = false;
 	}
 
   }
