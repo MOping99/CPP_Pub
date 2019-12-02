@@ -65,10 +65,10 @@ int main()
   }
 
   Player CPU_Failure = Player(&Game, "CPU_Failure", -1);
-  Player Mikael = Player(&Game, "Mikael", 0);
-  Player CPU_Daniel = Player(&Game, "CPU_Daniel", 1);
+  Player Player_1 = Player(&Game, "Player_1", 0);
+  Player CPU_First = Player(&Game, "CPU_First", 1);
   Player CPU_Genius = Player(&Game, "CPU_Genius", 2);
-	cout << CPU_Failure << Mikael << CPU_Daniel << CPU_Genius;
+	cout << CPU_Failure << Player_1 << CPU_First << CPU_Genius;
 
   bool playing = true;
   string yn;
@@ -76,8 +76,8 @@ int main()
   while(playing){
 
   CPU_Failure.play();
-  Mikael.play();
-  CPU_Daniel.play();
+  Player_1.play();
+  CPU_First.play();
   CPU_Genius.play();
 
   cout << "Another round? ";
@@ -92,6 +92,6 @@ int main()
   }
 
   cout << "Final Tally!" << endl;
-  cout << CPU_Failure << Mikael << CPU_Daniel << CPU_Genius;
+  cout << CPU_Failure << Player_1 << CPU_First << CPU_Genius;
 	return 0;
 }
