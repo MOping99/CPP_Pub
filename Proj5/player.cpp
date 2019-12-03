@@ -209,7 +209,8 @@ if(this -> get_level() == 1){
 			cout << "Current Board :\n" << *board;
 	}
 	else{
-		cout << "The swap failed." << endl;
+		cout << "The swap failed. This board contains no more possible chains!" << endl;
+		assert(0 == 1);
 	}
 
 
