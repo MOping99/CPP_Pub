@@ -183,7 +183,84 @@ void Player::play(){
 }
 
 if(this -> get_level() == 1){
-  cout << "Not Programmed\n" << "Would have picked first chain coordinate" << endl;
+	bool breaking = false;
+	int row, col;
+	for(int i = 0; i < board -> dimension(); i++){
+		for(int j = 0; j < board -> dimension(); j++){
+			if(board -> swap(i,j)){
+				breaking = true;
+				row = i;
+				col = j;
+			}
+			if(breaking){
+				break;
+			}
+		}
+		if(breaking){
+			break;
+		}
+	}
+
+	if(breaking){
+		cout << "-> give a row index : " << row << endl;
+		cout << "-> give a column index : " << col << endl;
+			score++;
+			cout << "The swap succeeded. Your score is " << score << endl;
+			cout << "Current Board :\n" << *board;
+	}
+	else{
+		cout << "The swap failed." << endl;
+	}
+
+
+
+	int count = 0;
+	bool contain3 = true;
+
+	while(contain3){
+
+		vector<int> buffer;
+
+		for(int i = 0; i < board -> dimension(); i++){
+			for(int j = 0; j < board -> dimension(); j++){
+				if(board -> vcount(i, j) >= 3 || board -> hcount(i, j) >= 3){
+					board -> shift(i, j);
+					//These 2 lines are the only substantial differences then the previous contain3 loop, it tracks the
+					//amount of swaps which are later added to the score and the other prints the board after a shift
+					count++;
+					cout << "the board after shift " << count <<" :\n" << *board;
+				}
+			}
+		}
+
+		for(int i = 0; i < board -> dimension(); i++){
+			for(int j = 0; j < board -> dimension(); j++){
+				buffer.push_back(board -> vcount(i, j));
+				buffer.push_back(board -> hcount(i, j));
+			}
+
+			contain3 = false;
+
+			for(int i = 0; i < buffer.size(); i++){
+				if(buffer[i] >= 3){
+					contain3 = true;
+				}
+			}
+
+		}
+
+
+
+	//This last section then asks the user wether or no they wish to play the game again and if the code recives
+	//a "y" we go over the loop again and ask for a new coordinate to check swap on
+	cout << "total number of shifts : " << count << endl;
+	score += count;
+	cout << "Your score " << name << " is " << score << endl;
+	}
+
+
+
+
 }
 
 if(this -> get_level() == 2){
