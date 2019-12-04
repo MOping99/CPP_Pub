@@ -8,7 +8,7 @@ using namespace std;
 
 Player::Player(Board* ptr_inBoard, string inName, int startLv = 0)
 {
-	board = ptr_inBoard; 
+	board = ptr_inBoard;
 	name = inName;
 	level = startLv;
   score = 0;
@@ -265,7 +265,163 @@ if(this -> get_level() == 1){
 }
 
 if(this -> get_level() == 2){
-  cout << "Not Programmed\n" << "Would have picked best chain coordinate" << endl;
+
+
+
+/*
+	vector<int> hcounts;
+	vector<int> vcounts;
+	bool breaking = false;
+
+	for(int x = 0; x < board -> dimension(); x++){
+		for(int y = 0; y < board -> dimension(); y++){
+
+				Board* temp = board;
+				for(int i = 0; i < temp -> dimension(); i++){
+					for(int j = 0; j < temp -> dimension(); j++){
+						if(temp -> swap(i,j)){
+							breaking = true;
+							hcounts.push_back(board -> hcount(i,j));
+							vcounts.push_back(board -> vcount(i,j));
+						}
+						if(breaking){
+							break;
+						}
+					}
+					if(breaking){
+						break;
+					}
+				}
+
+		}
+	}
+
+	int max = -1;
+	int hlocal = -1;
+	for(int i = 0; i < hcounts.size(); i++){
+		if(hcounts[i] > max){
+			max = hcounts[i];
+			hlocal = i;
+		}
+	}
+
+	int maxhoriz = max;
+
+	max = -1;
+	int vlocal = -1;
+	for(int i = 0; i < vcounts.size(); i++){
+		if(vcounts[i] > max){
+			max = vcounts[i];
+			vlocal = i;
+		}
+	}
+
+	int maxverti = max;
+
+	bool horiz = true;
+	if(maxverti > maxhoriz){
+		horiz = false;
+	}
+
+	if(horiz){
+		int quo = 0;
+		int div = board -> dimension();
+		while(hlocal > div){
+			hlocal -= div;
+			quo++;
+		}
+		int row = quo;
+		int col = hlocal;
+		if(board -> swap(row, col)){
+			breaking = true;
+		}
+		if(breaking){
+			cout << "-> give a row index : " << row << endl;
+			cout << "-> give a column index : " << col << endl;
+				score++;
+				cout << "The swap succeeded. Your score is " << score << endl;
+				cout << "Current Board :\n" << *board;
+		}
+		else{
+			cout << "The swap failed. This board contains no more possible chains!" << endl;
+			assert(0 == 1);
+		}
+	}
+	else{
+		int quo = 0;
+		int div = board -> dimension();
+		while(vlocal > div){
+			vlocal -= div;
+			quo++;
+		}
+		int row = quo;
+		int col = vlocal;
+		if(board -> swap(row, col)){
+			breaking = true;
+		}
+		if(breaking){
+			cout << "-> give a row index : " << row << endl;
+			cout << "-> give a column index : " << col << endl;
+				score++;
+				cout << "The swap succeeded. Your score is " << score << endl;
+				cout << "Current Board :\n" << *board;
+		}
+		else{
+			cout << "The swap failed. This board contains no more possible chains!" << endl;
+			assert(0 == 1);
+		}
+	}
+
+
+	int count = 0;
+	bool contain3 = true;
+
+	while(contain3){
+
+		vector<int> buffer;
+
+		for(int i = 0; i < board -> dimension(); i++){
+			for(int j = 0; j < board -> dimension(); j++){
+				if(board -> vcount(i, j) >= 3 || board -> hcount(i, j) >= 3){
+					board -> shift(i, j);
+					//These 2 lines are the only substantial differences then the previous contain3 loop, it tracks the
+					//amount of swaps which are later added to the score and the other prints the board after a shift
+					count++;
+					cout << "the board after shift " << count <<" :\n" << *board;
+				}
+			}
+		}
+
+		for(int i = 0; i < board -> dimension(); i++){
+			for(int j = 0; j < board -> dimension(); j++){
+				buffer.push_back(board -> vcount(i, j));
+				buffer.push_back(board -> hcount(i, j));
+			}
+
+			contain3 = false;
+
+			for(int i = 0; i < buffer.size(); i++){
+				if(buffer[i] >= 3){
+					contain3 = true;
+				}
+			}
+
+		}
+
+
+
+	//This last section then asks the user wether or no they wish to play the game again and if the code recives
+	//a "y" we go over the loop again and ask for a new coordinate to check swap on
+	cout << "total number of shifts : " << count << endl;
+	score += count;
+	cout << "Your score " << name << " is " << score << endl;
+	}
+*/
+
+
+
+
+
 }
 
 }
