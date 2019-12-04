@@ -8,7 +8,7 @@ using namespace std;
 
 Player::Player(Board* ptr_inBoard, string inName, int startLv = 0)
 {
-	board = ptr_inBoard;
+	board = ptr_inBoard; 
 	name = inName;
 	level = startLv;
   score = 0;
