@@ -4,20 +4,61 @@
 #include "player.h"
 #include <utility> //Used to allow us access to pairs and their functions
 
-Player::Player(Board* ptr_inBoard, string inName, int startLv = 0)
+Player::Player(Board* ptr_inBoard, string inName, int startLv = 0) // The class constructer for player, taking in they
+//board we plan on distributing, the player name, and their level of strategy
 {
-	board = ptr_inBoard;
-	name = inName;
-	level = startLv;
-  score = 0;
+	board = ptr_inBoard; //Used to make a copy of the board, indicated by the above points
+	name = inName; //Stores the player name
+	level = startLv; //Stores the level of strategy
+  score = 0; //Stores the score in which all players begin with 0
 }
 
-int Player::get_level()
+int Player::get_level() //Function used to retrieve the level of strategy
 {return level;}
 
-int Player::get_score()
+int Player::get_score() //Function used to retrieve the score of a player
 {return score;}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//The most important function which actually lets a player have their turn
+//It begins by first telling all present who is playing as shown by the cout
+//then it breaks people apart based on what their strategy and plays through
+//strategies logic
 void Player::play(){
   cout << this -> name << " it's you turn!" << endl;
 
@@ -362,9 +403,39 @@ cout << "Your score " << name << " is " << score << endl;
 
 }
 
-ostream &operator<<(ostream &os, const Player &Obj)
-{
-	os << "Player " << Obj.name << " at level " << Obj.level << " has scored " << Obj.score << ".\n" << "The shared board is\n" << *(Obj.board);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// A function that will output then the board of a player along with who they are strategy and score
+ostream &operator<<(ostream &os, const Player &Obj){
+
+	os << "Player " << Obj.name << " at level " << Obj.level << " has scored "
+	<< Obj.score << ".\n" << "The shared board is\n" << *(Obj.board);
 	return os;
 }
