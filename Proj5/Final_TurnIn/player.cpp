@@ -62,166 +62,58 @@ int Player::get_score() //Function used to retrieve the score of a player
 void Player::play(){
   cout << this -> name << " it's you turn!" << endl;
 
-  if(this -> get_level() == 0){
-	    //We define the integers that will be used to pick a coordinate
-	  	int rowind, colind;
-	  	//The state of play which we assume will always be true since there is no reason to run the program unless
-	  	//you wish to play with a corresponding string to we will use to check wether or no the user wishes to keep
-	  	//playing
-	  	bool play = true;
-	  	string yn;
+	//Level -1 is the strategy that implies human control, the logic for level -1 is essentialy the
+	//test_game.cpp only with the option for multiple rounds removed from the player
+	if(this -> get_level() == -1){
+		//We define the integers that will be used to pick a coordinate
+		int rowind, colind;
 
-	  	while(play){
-	  		//We take in the users coordinate choice and use that as the first pass
-	  		cout << "-> give a row index : ";
-	  		rowind = rand() % board -> dimension();
-				cout << rowind << endl;
-	  		cout << "-> give a column index : ";
-				colind = rand() % board -> dimension();
-				cout << colind << endl;
+			//We take in the users coordinate choice and use that to see if they can make a chain
+			cout << "-> give a row index : ";
+			cin >> rowind;
+			cout << "-> give a column index : ";
+			cin >> colind;
 
-	  		//We use this coordinate as the swap target and based on what we go of true or false we tell
-	  		//the player wether it scored or not
-	  		if(board -> swap(rowind, colind)){
-	  			score++;
-	  			cout << "The swap succeeded. Your score is " << score << endl;
-	  			cout << "Current Board :\n" << *board;
-	  		}
-	  		else{
-	  			cout << "The swap failed." << endl;
-	  			}
-
-
-	  		//We then do the destroying loop to add up all the times we remove a three or more chain, the only
-	  		//difference is, is that we count up everytime we remove a chain since that increases or score
-	  		//and every time we remove a chain we show the player the board
-	  		int count = 0;
-	  		bool contain3 = true;
-
-	  		while(contain3){
-
-	  			vector<int> buffer;
-
-	  			for(int i = 0; i < board -> dimension(); i++){
-	  				for(int j = 0; j < board -> dimension(); j++){
-	  					if(board -> vcount(i, j) >= 3 || board -> hcount(i, j) >= 3){
-	  						board -> shift(i, j);
-	  						//These 2 lines are the only substantial differences then the previous contain3 loop, it tracks the
-	  						//amount of swaps which are later added to the score and the other prints the board after a shift
-	  						count++;
-	  						cout << "the board after shift " << count <<" :\n" << *board;
-	  					}
-	  				}
-	  			}
-
-	  			for(int i = 0; i < board -> dimension(); i++){
-	  				for(int j = 0; j < board -> dimension(); j++){
-	  					buffer.push_back(board -> vcount(i, j));
-	  					buffer.push_back(board -> hcount(i, j));
-	  				}
-
-	  				contain3 = false;
-
-	  				for(int i = 0; i < buffer.size(); i++){
-	  					if(buffer[i] >= 3){
-	  						contain3 = true;
-	  					}
-	  				}
-
-	  			}
-
-	  		}
-
-	  	//This last section then asks the user wether or no they wish to play the game again and if the code recives
-	  	//a "y" we go over the loop again and ask for a new coordinate to check swap on
-	  	cout << "total number of shifts : " << count << endl;
-	  	score += count;
-	  	cout << "Your score " << name << " is " << score << endl;
-	    play = false;
-	  }
-  }
-
-  if(this -> get_level() == -1){
-    //We define the integers that will be used to pick a coordinate
-  	int rowind, colind;
-  	//The state of play which we assume will always be true since there is no reason to run the program unless
-  	//you wish to play with a corresponding string to we will use to check wether or no the user wishes to keep
-  	//playing
-  	bool play = true;
-  	string yn;
-
-  	while(play){
-  		//We take in the users coordinate choice and use that as the first pass
-  		cout << "-> give a row index : ";
-  		cin >> rowind;
-  		cout << "-> give a column index : ";
-  		cin >> colind;
-
-  		//We use this coordinate as the swap target and based on what we go of true or false we tell
-  		//the player wether it scored or not
-  		if(board -> swap(rowind, colind)){
-  			score++;
-  			cout << "The swap succeeded. Your score is " << score << endl;
-  			cout << "Current Board :\n" << *board;
-  		}
-  		else{
-  			cout << "The swap failed." << endl;
-  			}
-
-
-  		//We then do the destroying loop to add up all the times we remove a three or more chain, the only
-  		//difference is, is that we count up everytime we remove a chain since that increases or score
-  		//and every time we remove a chain we show the player the board
-  		int count = 0;
-  		bool contain3 = true;
-
-  		while(contain3){
-
-  			vector<int> buffer;
-
-  			for(int i = 0; i < board -> dimension(); i++){
-  				for(int j = 0; j < board -> dimension(); j++){
-  					if(board -> vcount(i, j) >= 3 || board -> hcount(i, j) >= 3){
-  						board -> shift(i, j);
-  						//These 2 lines are the only substantial differences then the previous contain3 loop, it tracks the
-  						//amount of swaps which are later added to the score and the other prints the board after a shift
-  						count++;
-  						cout << "the board after shift " << count <<" :\n" << *board;
-  					}
-  				}
-  			}
-
-  			for(int i = 0; i < board -> dimension(); i++){
-  				for(int j = 0; j < board -> dimension(); j++){
-  					buffer.push_back(board -> vcount(i, j));
-  					buffer.push_back(board -> hcount(i, j));
-  				}
-
-  				contain3 = false;
-
-  				for(int i = 0; i < buffer.size(); i++){
-  					if(buffer[i] >= 3){
-  						contain3 = true;
-  					}
-  				}
-
-  			}
-
-  		}
-
-  	//This last section then asks the user wether or no they wish to play the game again and if the code recives
-  	//a "y" we go over the loop again and ask for a new coordinate to check swap on
-  	cout << "total number of shifts : " << count << endl;
-  	score += count;
-  	cout << "Your score " << name << " is " << score << endl;
-    play = false;
-  }
-
-
+			//If a chain has been created we give the user a point and tell them that it succeeded and then show
+			//the new altered board to them, before we've removed the chain
+			if(board -> swap(rowind, colind)){
+				score++;
+				cout << "The swap succeeded. Your score is " << score << endl;
+				cout << "Current Board :\n" << *board;
+			}
+			//Or we tell them that they failed to make a chain making move on to the chain destruction at the
+			//end of the function
+			else{
+				cout << "The swap failed." << endl;
+				}
 
 }
 
-if(this -> get_level() == 1){
+  if(this -> get_level() == 0){
+	    //We define the integers that will be used to pick a coordinate
+	  	int rowind, colind;
+
+			cout << "-> give a row index : ";
+			rowind = rand() % board -> dimension();
+			cout << rowind << endl;
+			cout << "-> give a column index : ";
+			colind = rand() % board -> dimension();
+			cout << colind << endl;
+
+			//We use this coordinate as the swap target and based on what we go of true or false we tell
+			//the player wether it scored or not
+			if(board -> swap(rowind, colind)){
+				score++;
+				cout << "The swap succeeded. Your score is " << score << endl;
+				cout << "Current Board :\n" << *board;
+			}
+			else{
+				cout << "The swap failed." << endl;
+				}
+
+  }
+
+	if(this -> get_level() == 1){
 	bool breaking = false;
 	int row, col;
 	for(int i = 0; i < board -> dimension(); i++){
@@ -253,57 +145,9 @@ if(this -> get_level() == 1){
 	}
 
 
-
-	int count = 0;
-	bool contain3 = true;
-
-	while(contain3){
-
-		vector<int> buffer;
-
-		for(int i = 0; i < board -> dimension(); i++){
-			for(int j = 0; j < board -> dimension(); j++){
-				if(board -> vcount(i, j) >= 3 || board -> hcount(i, j) >= 3){
-					board -> shift(i, j);
-					//These 2 lines are the only substantial differences then the previous contain3 loop, it tracks the
-					//amount of swaps which are later added to the score and the other prints the board after a shift
-					count++;
-					cout << "the board after shift " << count <<" :\n" << *board;
-				}
-			}
-		}
-
-		for(int i = 0; i < board -> dimension(); i++){
-			for(int j = 0; j < board -> dimension(); j++){
-				buffer.push_back(board -> vcount(i, j));
-				buffer.push_back(board -> hcount(i, j));
-			}
-
-			contain3 = false;
-
-			for(int i = 0; i < buffer.size(); i++){
-				if(buffer[i] >= 3){
-					contain3 = true;
-				}
-			}
-
-		}
-
-
-
-	//This last section then asks the user wether or no they wish to play the game again and if the code recives
-	//a "y" we go over the loop again and ask for a new coordinate to check swap on
-	cout << "total number of shifts : " << count << endl;
-	score += count;
-	cout << "Your score " << name << " is " << score << endl;
-	}
-
-
-
-
 }
 
-if(this -> get_level() == 2){
+	if(this -> get_level() == 2){
 
 	pair<int,int> best (-1,-1);
 	int bestchain = -1;
@@ -356,7 +200,16 @@ if(this -> get_level() == 2){
 	}
 
 
+}
 
+
+//As we did in the previous code for test_board.cpp and as we do in test_game.cpp, we loop through the
+//board removing all chains that currently exist in it. We do this so that the player next round has no
+//unfair advantages and also because these are the current players points
+
+//To do this we have a count variable which gets added to when a chain is destroyed, this destruction is
+//only occurs at chains the resulted from play and is why shift() is called. We also have a boolean called
+//contain3 which is true since swap is true.
 int count = 0;
 bool contain3 = true;
 
@@ -394,12 +247,9 @@ while(contain3){
 
 }
 
-//This last section then asks the user wether or no they wish to play the game again and if the code recives
-//a "y" we go over the loop again and ask for a new coordinate to check swap on
 cout << "total number of shifts : " << count << endl;
 score += count;
 cout << "Your score " << name << " is " << score << endl;
-}
 
 }
 
