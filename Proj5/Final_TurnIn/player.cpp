@@ -2,10 +2,7 @@
 //player.cpp
 
 #include "player.h"
-#include <cassert>
-#include <utility>
-
-using namespace std;
+#include <utility> //Used to allow us access to pairs and their functions
 
 Player::Player(Board* ptr_inBoard, string inName, int startLv = 0)
 {

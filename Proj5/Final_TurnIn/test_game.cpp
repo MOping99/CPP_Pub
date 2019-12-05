@@ -3,10 +3,8 @@
 
 #include "player.cpp"
 
-int main()
-{
+int main(){
 
-  /*        Code to setup game of a dynamic size & randomizer
   //We added this so that everyboard will always be different
   srand(time(NULL));
 
@@ -19,9 +17,6 @@ int main()
   cout << "Give the number of different items : ";
   cin >> num;
   Board Game = Board(dim, num);
-  */
-
-	Board Game = Board(5,4);
 
   bool contain3 = true;
   while(contain3){
@@ -65,11 +60,11 @@ int main()
   }
 
   Player Player_1 = Player(&Game, "Player_1", -1);
-	Player CPU_Failure = Player(&Game, "CPU_Failure", 0);
+	Player CPU_Random = Player(&Game, "CPU_Random", 0);
   Player CPU_First = Player(&Game, "CPU_First", 1);
   Player CPU_Genius = Player(&Game, "CPU_Genius", 2);
 
-	cout << Player_1 << CPU_Failure << CPU_First << CPU_Genius;
+	cout << Player_1 << CPU_Random << CPU_First << CPU_Genius;
 
   bool playing = true;
   string yn;
@@ -77,7 +72,7 @@ int main()
   while(playing){
 
 	Player_1.play();
-  CPU_Failure.play();
+  CPU_Random.play();
   CPU_First.play();
   CPU_Genius.play();
 
@@ -93,12 +88,12 @@ int main()
   }
 
   cout << "Final Tally!" << endl;
-  cout << Player_1 << CPU_Failure << CPU_First << CPU_Genius;
+  cout << Player_1 << CPU_Random << CPU_First << CPU_Genius;
 	cout << "The Winner of our Game was..." << endl;
 
 	int points = -1;
 
-	vector< Player > Players{Player_1, CPU_Failure, CPU_First, CPU_Genius};
+	vector< Player > Players{Player_1, CPU_Random, CPU_First, CPU_Genius};
 
 	for(int i = 0; i < Players.size(); i++){
 
