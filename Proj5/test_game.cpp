@@ -64,19 +64,20 @@ int main()
 
   }
 
-  Player CPU_Failure = Player(&Game, "CPU_Failure", -1);
-  Player Player_1 = Player(&Game, "Player_1", 0);
+  Player Player_1 = Player(&Game, "Player_1", -1);
+	Player CPU_Failure = Player(&Game, "CPU_Failure", 0);
   Player CPU_First = Player(&Game, "CPU_First", 1);
   Player CPU_Genius = Player(&Game, "CPU_Genius", 2);
-	cout << CPU_Failure << Player_1 << CPU_First << CPU_Genius;
+
+	cout << Player_1 << CPU_Failure << CPU_First << CPU_Genius;
 
   bool playing = true;
   string yn;
 
   while(playing){
 
+	Player_1.play();
   CPU_Failure.play();
-  Player_1.play();
   CPU_First.play();
   CPU_Genius.play();
 
@@ -92,6 +93,27 @@ int main()
   }
 
   cout << "Final Tally!" << endl;
-  cout << CPU_Failure << Player_1 << CPU_First << CPU_Genius;
+  cout << Player_1 << CPU_Failure << CPU_First << CPU_Genius;
+	cout << "The Winner of our Game was..." << endl;
+
+	int points = -1;
+
+	vector< Player > Players{Player_1, CPU_Failure, CPU_First, CPU_Genius};
+
+	for(int i = 0; i < Players.size(); i++){
+
+		if(Players[i].get_score() > points){
+			points = Players[i].get_score();
+		}
+	}
+
+	for(int j = 0; j < Players.size(); j++){
+		if(Players[j].get_score() == points){
+			cout << Players[j];
+			cout << "Winning with his score of " << points << " points!" << endl;
+		}
+	}
+
+
 	return 0;
 }

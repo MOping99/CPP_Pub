@@ -24,7 +24,7 @@ int Player::get_score()
 void Player::play(){
   cout << this -> name << " it's you turn!" << endl;
 
-  if(this -> get_level() == -1){
+  if(this -> get_level() == 0){
 	    //We define the integers that will be used to pick a coordinate
 	  	int rowind, colind;
 	  	//The state of play which we assume will always be true since there is no reason to run the program unless
@@ -103,7 +103,7 @@ void Player::play(){
 	  }
   }
 
-  if(this -> get_level() == 0){
+  if(this -> get_level() == -1){
     //We define the integers that will be used to pick a coordinate
   	int rowind, colind;
   	//The state of play which we assume will always be true since there is no reason to run the program unless
