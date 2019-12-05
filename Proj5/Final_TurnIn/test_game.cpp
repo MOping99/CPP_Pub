@@ -43,72 +43,67 @@ int main(){
         buffer.push_back(Game.vcount(i, j));
         buffer.push_back(Game.hcount(i, j));
       }
+    }
 
-      //We then assume that the board does contain no three chains and assuming our loop checking the buffer does
-      //not contain any 3s or larger numbers we mainting it being false otherwise we make it true and the program
-      //loops again breaking all the three chains or larger before checking to make sure nothing remains, and this
-      //will continue every time until no chains of 3 or larger exist
-      contain3 = false;
-      for(int i = 0; i < buffer.size(); i++){
-        if(buffer[i] >= 3){
-          contain3 = true;
-        }
+    //We then assume that the board does contain no three chains and assuming our loop checking the buffer does
+    //not contain any 3s or larger numbers we mainting it being false otherwise we make it true and the program
+    //loops again breaking all the three chains or larger before checking to make sure nothing remains, and this
+    //will continue every time until no chains of 3 or larger exist
+    contain3 = false;
+    for(int i = 0; i < buffer.size(); i++){
+      if(buffer[i] >= 3){
+        contain3 = true;
       }
-
     }
 
   }
 
-  Player Player_1 = Player(&Game, "Player_1", -1);
-	Player CPU_Random = Player(&Game, "CPU_Random", 0);
-  Player CPU_First = Player(&Game, "CPU_First", 1);
-  Player CPU_Genius = Player(&Game, "CPU_Genius", 2);
+  //We then ask for the levels of both players and store it in their level variables before initalizing both
+  // and outputing the board they will be playing on as well as their strategy levels
+  int level1, level2;
+  cout << "Give the level of player one (-1 for interactive) : ";
+  cin >> level1;
+  cout << "Give the level of player two (-1 for interactive) : ";
+  cin >> level2;
 
-	cout << Player_1 << CPU_Random << CPU_First << CPU_Genius;
+  Player Player_1 = Player(&Game, "Player_1", level1);
+	Player Player_2 = Player(&Game, "Player_2", level2);
+  cout << Player_1 << Player_2;
 
+  //We then have a playing while loop that is automatically on
   bool playing = true;
   string yn;
-
   while(playing){
 
-	Player_1.play();
-  CPU_Random.play();
-  CPU_First.play();
-  CPU_Genius.play();
+    Player_1.play();
+    Player_2.play();
 
-  cout << "Another round? ";
-  cin >> yn;
-  if(yn == "y"){
-		playing = true;
-	}
-	else{
-		playing = false;
-	}
+    //After both players have had their turn the operator is asked if they want another round in which case
+    //we have another round or we end the loop
+    cout << "Another round? ";
+    cin >> yn;
+    if(yn == "y"){
+		    playing = true;
+    }
+	  else{
+      playing = false;
+    }
 
   }
 
-  cout << "Final Tally!" << endl;
-  cout << Player_1 << CPU_Random << CPU_First << CPU_Genius;
-	cout << "The Winner of our Game was..." << endl;
-
-	int points = -1;
-
-	vector< Player > Players{Player_1, CPU_Random, CPU_First, CPU_Genius};
-
-	for(int i = 0; i < Players.size(); i++){
-
-		if(Players[i].get_score() > points){
-			points = Players[i].get_score();
-		}
-	}
-
-	for(int j = 0; j < Players.size(); j++){
-		if(Players[j].get_score() == points){
-			cout << Players[j];
-			cout << "Winning with his score of " << points << " points!" << endl;
-		}
-	}
-
+  //The final thing we then do in the program is a set of nested if statments that are used to check who scored
+  //better and then declare that cpu or human the victor
+  if(Player_1.get_score() == Player_2.get_score()){
+    cout << "We have a tie! What are the odds of that,\nthe final scores for both players was: " << Player_1.get_score();
+  }
+  else{
+    if(Player_1.get_score() > Player_2.get_score()){
+      cout << "Player_1 wins with " << Player_1.get_score() << " over " << Player_2.get_score();
+    }
+    else{
+      cout << "Player_2 wins with " << Player_2.get_score() << " over " << Player_1.get_score();
+    }
+  }
 
 	return 0;
 }
