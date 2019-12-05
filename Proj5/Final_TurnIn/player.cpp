@@ -203,40 +203,53 @@ void Player::play(){
 }
 
 
-//As we did in the previous code for test_board.cpp and as we do in test_game.cpp, we loop through the
-//board removing all chains that currently exist in it. We do this so that the player next round has no
-//unfair advantages and also because these are the current players points
+	//As we did in the previous code for test_board.cpp and as we do in test_game.cpp, we loop through the
+	//board removing all chains that currently exist in it. We do this so that the player next round has no
+	//unfair advantages and also because these are the current players points
 
-//To do this we have a count variable which gets added to when a chain is destroyed, this destruction is
-//only occurs at chains the resulted from play and is why shift() is called. We also have a boolean called
-//contain3 which is true since swap is true.
-int count = 0;
-bool contain3 = true;
+	//To do this we have a count variable which gets added to when a chain is destroyed, this destruction is
+	//only occurs at chains the resulted from play and is why shift() is called. We also have a boolean called
+	//contain3 which is true since swap is true.
+	int count = 0;
+	bool contain3 = true;
 
-while(contain3){
+	while(contain3){
 
-	vector<int> buffer;
+		//The "buffer" vector holds all of the hcounts and vounts we have when running through the loop ran
+		//be reset every time we loop so that we aren't stuck in an infinte loop
+		vector<int> buffer;
 
-	for(int i = 0; i < board -> dimension(); i++){
-		for(int j = 0; j < board -> dimension(); j++){
-			if(board -> vcount(i, j) >= 3 || board -> hcount(i, j) >= 3){
-				board -> shift(i, j);
-				//These 2 lines are the only substantial differences then the previous contain3 loop, it tracks the
-				//amount of swaps which are later added to the score and the other prints the board after a shift
-				count++;
-				cout << "the board after shift " << count <<" :\n" << *board;
+		//This first set of nested for loops is meant to destroy all the current chains on the board
+		//although there should be only one chain currently when we remove it, we have the possiblity
+		//of having created more chains
+		for(int i = 0; i < board -> dimension(); i++){
+			for(int j = 0; j < board -> dimension(); j++){
+				if(board -> vcount(i, j) >= 3 || board -> hcount(i, j) >= 3){
+					board -> shift(i, j);
+					//The following two lines of code are then used to show the player the board after they have removed
+					//a chain as well as increment the count which will later be added to the score.
+					count++;
+					cout << "the board after shift " << count <<" :\n" << *board;
+				}
 			}
 		}
-	}
 
-	for(int i = 0; i < board -> dimension(); i++){
-		for(int j = 0; j < board -> dimension(); j++){
-			buffer.push_back(board -> vcount(i, j));
-			buffer.push_back(board -> hcount(i, j));
+		//As stated before, since we can't be sure wether or not we've created more chains we loop thorough again
+		//and add all the hcounts and vcounts
+		for(int i = 0; i < board -> dimension(); i++){
+			for(int j = 0; j < board -> dimension(); j++){
+				buffer.push_back(board -> vcount(i, j));
+				buffer.push_back(board -> hcount(i, j));
+			}
 		}
 
+		//For the loop to end we need there to be no number three or larger in our buffer vector but rather then
+		//trying to prove it is false, we make the contain3 boolean false automatically, and then try proving
+		//it should be true
 		contain3 = false;
 
+		//This loop is meant to prove wether or not it does in fact contain 3 and if it does, we run the loop again
+		//till we get false
 		for(int i = 0; i < buffer.size(); i++){
 			if(buffer[i] >= 3){
 				contain3 = true;
@@ -245,42 +258,14 @@ while(contain3){
 
 	}
 
+	//After all the removal of all chains we finally add the count of chains destroyed to their score and print it out
+	//along with their total number of shifts. It's important to remember this score variable is carried over every round
+	//so that no information is lost
+	cout << "total number of shifts : " << count << endl;
+	score += count;
+	cout << "Your score " << name << " is " << score << endl;
+
 }
-
-cout << "total number of shifts : " << count << endl;
-score += count;
-cout << "Your score " << name << " is " << score << endl;
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // A function that will output then the board of a player along with who they are strategy and score
 ostream &operator<<(ostream &os, const Player &Obj){
