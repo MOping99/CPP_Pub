@@ -1,5 +1,5 @@
 // MCS 360 Project Three by Mikael Opingari and Daniel Zagal
-//test_player.cpp
+//test_game.cpp
 
 #include "player.cpp"
 
